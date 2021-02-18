@@ -2,12 +2,15 @@ package payroll;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 class Drug {
 
-    private @Id @GeneratedValue Long drugid;
+    private @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     private String name;
     private String action;
     private String location;
@@ -23,7 +26,7 @@ class Drug {
     }
 
     public Long getId() {
-        return this.drugid;
+        return this.id;
     }
 
     public String getName() {
@@ -43,7 +46,7 @@ class Drug {
     }
 
     public void setId(Long id) {
-        this.drugid = id;
+        this.id = id;
     }
 
     public void setName(String name) {
@@ -72,7 +75,7 @@ class Drug {
 
     @Override
     public String toString() {
-        return "{drugid=" + this.drugid + ", name=" + this.name + ", action=" + this.action
+        return "{drugid=" + this.id + ", name=" + this.name + ", action=" + this.action
         + ", location=" + this.location + " ,expired=" + this.expired + '}';
     }
 }

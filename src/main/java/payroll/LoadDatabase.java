@@ -14,10 +14,7 @@ class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase (DrugRepository repository) {
         return args -> {
-            log.info("Preloading " +
-            repository.save(new Drug("Лоратадин", "аллергия", "там", "2020-01-01")));
-            log.info("Preloading " +
-            repository.save(new Drug("Лоперамид", "понос", "там", "2025-05-01")));
+            log.info("Preloading ...");
         };
     }
 }
