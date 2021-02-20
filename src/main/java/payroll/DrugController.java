@@ -55,17 +55,13 @@ class DrugController {
     @PutMapping("/api/DrugsApi/{drugid}")
     Drug replaceDrug(@RequestBody Drug newDrug, @PathVariable Long drugid) {
 
-        return repository.findById(drugid)
-        .map(drug -> {
+        Drug drug = repository.findById(drugid).get();
             drug.setName(newDrug.getName());
             drug.setAction(newDrug.getAction());
             drug.setLocation(newDrug.getLocation());
             drug.setExpired(newDrug.getExpired());
-        })
-        .orElseGet(() -> {
-            newDrug.setId(drugid);
-            return repository.save(newDrug);
-        });
+            repository.save(drug);
+            return drug;
     }
     @DeleteMapping("/api/DrugsApi/{drugid}")
     void deleteDrug(@PathVariable Long drugid) {
